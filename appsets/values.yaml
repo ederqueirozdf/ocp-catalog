@@ -1,0 +1,20 @@
+argocd: 
+  namespace: openshift-gitops
+
+project:
+  name: appsets
+  description: Appsets Projects
+  sourceRepos:
+    - https://gitlab.gitlab.apps.equeiroz.rhbr-lab.com.br/redhat/openshift-releases.git
+  destinations:
+    - namespace: "*"
+      server: https://kubernetes.default.svc
+
+applications:
+
+  - name: app-oadp
+    repoURL: https://gitlab.gitlab.apps.equeiroz.rhbr-lab.com.br/redhat/openshift-releases.git
+    path: appset-oadp
+    destinationNamespace: default
+    destinationServer: https://gitlab.gitlab.apps.equeiroz.rhbr-lab.com.br/redhat/openshift-releases.git
+
