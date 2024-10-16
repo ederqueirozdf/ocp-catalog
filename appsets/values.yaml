@@ -15,6 +15,6 @@ applications:
   - name: app-oadp
     repoURL: https://github.com/ederqueirozdf/ocp-catalog.git
     path: appset-oadp
-    destinationNamespace: default
+    destinationNamespace: openshift-adp
     destinationServer: https://kubernetes.default.svc
 
