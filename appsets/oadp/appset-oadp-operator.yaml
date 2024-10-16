@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: oadp-instance
+  name: oadp-operator-appset
   namespace: openshift-gitops
 spec:
   generators:
@@ -11,7 +11,7 @@ spec:
             - key: env
               operator: In
               values:
-                - des
+                - dev
                 - hml
                 - prd
             - key: servico
@@ -22,13 +22,13 @@ spec:
                 - oadp-1.2
   template:
     metadata:
-      name: '{{name}}-oadp-instance'
+      name: '{{name}}-oadp-operator'
     spec:
-      project: default
+      project: appset-oadp
       source:
         repoURL: 'https://github.com/ederqueirozdf/ocp-catalog.git'
         targetRevision: HEAD
-        path: 'appsets/oadp/instance/overlays/{{metadata.labels.env}}'
+        path: 'appsets/oadp/operator/overlays/{{.metadata.labels.servico}}'
       destination:
         server: '{{server}}'
         namespace: openshift-adp

@@ -19,4 +19,4 @@ patches:
       - op: replace
         path: /spec/channel
         value: 'stable-1.1'
-        
+

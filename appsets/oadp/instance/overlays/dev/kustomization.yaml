@@ -8,11 +8,11 @@ bases:
 patches:
   - target:
       kind: DataProtectionApplication
-      name: oadp-dpa-hml
+      name: oadp-dpa-des
     patch: |-
       - op: replace
         path: /spec/backupLocations/0/velero/config/s3Url
-        value: "http://s3.hml.com.br"
+        value: "http://s3.des.com.br"
 
   - target:
       kind: Schedule
@@ -20,7 +20,19 @@ patches:
     patch: |-
       - op: replace
         path: /metadata/name
-        value: "backup-completo-24h"
+        value: "backup-completo-48h"
       - op: replace
         path: /spec/schedule
-        value: "0 */24 * * *"
+        value: "0 */48 * * *"
+
+  # - target:
+  #     group: operators.coreos.com
+  #     version: v1alpha1
+  #     kind: Subscription
+  #     name: redhat-oadp-operator
+  #     namespace: openshift-adp
+  #   patch: |-
+  #     - op: replace
+  #       path: /spec/channel
+  #       value: 'stable-1.1'
+
