@@ -5,7 +5,7 @@ project:
   name: appsets
   description: Appsets Projects
   sourceRepos:
-    - https://gitlab.gitlab.apps.equeiroz.rhbr-lab.com.br/redhat/openshift-releases.git
+    - https://github.com/ederqueirozdf/ocp-catalog.git
   destinations:
     - namespace: "*"
       server: https://kubernetes.default.svc
@@ -13,8 +13,8 @@ project:
 applications:
 
   - name: app-oadp
-    repoURL: https://gitlab.gitlab.apps.equeiroz.rhbr-lab.com.br/redhat/openshift-releases.git
+    repoURL: https://github.com/ederqueirozdf/ocp-catalog.git
     path: appset-oadp
     destinationNamespace: default
-    destinationServer: https://gitlab.gitlab.apps.equeiroz.rhbr-lab.com.br/redhat/openshift-releases.git
+    destinationServer: https://kubernetes.default.svc
 
