@@ -11,7 +11,7 @@ spec:
             - key: env
               operator: In
               values:
-                - dev
+                - des
                 - hml
                 - prd
             - key: servico
