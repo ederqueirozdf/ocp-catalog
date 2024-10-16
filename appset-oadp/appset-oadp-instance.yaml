@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: oadp-appset
+  name: oadp-instance
   namespace: openshift-gitops
 spec:
   generators:
@@ -17,16 +17,18 @@ spec:
             - key: servico
               operator: In
               values:
-                - oadp
+                - oadp-1.0
+                - oadp-1.1
+                - oadp-1.2
   template:
     metadata:
-      name: '{{name}}-oadp'
+      name: '{{name}}-oadp-instance'
     spec:
       project: default
       source:
-        repoURL: https://github.com/ederqueirozdf/ocp-catalog.git
+        repoURL: 'https://github.com/ederqueirozdf/ocp-catalog.git'
         targetRevision: HEAD
-        path: 'oadp/overlays/{{metadata.labels.env}}'
+        path: 'appsets/oadp/instance/overlays/{{metadata.labels.env}}'
       destination:
         server: '{{server}}'
         namespace: openshift-adp
@@ -34,4 +36,3 @@ spec:
         automated:
           prune: true
           selfHeal: true
-
