@@ -2,8 +2,8 @@ argocd:
   namespace: openshift-gitops
 
 project:
-  name: appset-oadp
-  description: Appsets Projects
+  name: appsets
+  description: Appsets applications defaults
   sourceRepos:
     - 'https://github.com/ederqueirozdf/ocp-catalog.git'
   destinations:
@@ -18,3 +18,8 @@ applications:
     destinationNamespace: openshift-adp
     destinationServer: https://kubernetes.default.svc
 
+  - name: oauth
+    repoURL: https://github.com/ederqueirozdf/ocp-catalog.git
+    path: appsets/oauth
+    destinationNamespace: openshift-config
+    destinationServer: https://kubernetes.default.svc

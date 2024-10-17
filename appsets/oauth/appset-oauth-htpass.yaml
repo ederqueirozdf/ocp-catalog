@@ -1,39 +1,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: oadp-instance-appset
+  name: oauth-htpass-appset
   namespace: openshift-gitops
 spec:
   generators:
     - clusters:
         selector:
           matchExpressions:
-            - key: env
-              operator: In
-              values:
-                - dev
-                - hml
-                - prd
             - key: servico
               operator: In
               values:
-                - oadp-1.0
-                - oadp-1.1
-                - oadp-1.2
-                - oadp_1.1
+                - htpass
   template:
     metadata:
-      name: '{{name}}-oadp-instance'
+      name: '{{name}}-oauth-htpass'
     spec:
       project: default
       source:
-        repoURL: 'https://github.com/ederqueirozdf/ocp-catalog.git'
+        repoURL: 'https://gitlab.gitlab.apps.equeiroz.rhbr-lab.com.br/redhat/openshift-releases.git'
         targetRevision: HEAD
-        path: 'appsets/oadp/instance/overlays/{{metadata.labels.env}}'
+        path: 'appsets/oauth/overlays/{{metadata.labels.servico}}'
       destination:
         server: '{{server}}'
-        namespace: openshift-adp
+        namespace: openshift-config
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
+
+
+
+
