@@ -3,12 +3,26 @@ argocd:
 
 project:
   name: appsets
-  description: Appsets applications defaults
+  description: Appsets Projects
   sourceRepos:
     - 'https://github.com/ederqueirozdf/ocp-catalog.git'
   destinations:
     - namespace: "*"
       server: https://kubernetes.default.svc
+    - namespace: "*"
+      server: https://api.equeiroz-prd.rhbr-lab.com.br:6443
+  namespaceResourceWhitelist:
+    - group: "operators.coreos.com"
+      kind: "OperatorGroup"
+    - group: "operators.coreos.com"
+      kind: "Subscription"
+    - group: "oadp.openshift.io"
+      kind: "DataProtectionApplication"
+    - group: "velero.io"
+      kind: "Schedule"
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
 
 applications:
 
