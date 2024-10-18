@@ -8,7 +8,7 @@ spec:
     - clusters:
         selector:
           matchExpressions:
-            - key: servico
+            - key: oauth
               operator: In
               values:
                 - htpass
@@ -18,9 +18,9 @@ spec:
     spec:
       project: default
       source:
-        repoURL: 'https://gitlab.gitlab.apps.equeiroz.rhbr-lab.com.br/redhat/openshift-releases.git'
+        repoURL: 'https://github.com/ederqueirozdf/ocp-catalog.git'
         targetRevision: HEAD
-        path: 'appsets/oauth/overlays/{{metadata.labels.servico}}'
+        path: 'appsets/oauth/overlays/{{metadata.labels.oauth}}'
       destination:
         server: '{{server}}'
         namespace: openshift-config
